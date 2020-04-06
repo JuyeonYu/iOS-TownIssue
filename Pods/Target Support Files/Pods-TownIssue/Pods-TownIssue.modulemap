@@ -1,0 +1,6 @@
+framework module Pods_TownIssue {
+  umbrella header "Pods-TownIssue-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  TownIssue
+
+  Created by 주연  유 on 2020/04/01.
+  Copyright © 2020 주연  유. All rights reserved.
+*/
+
+"menu" = "메뉴";
+"delete" = "삭제";
+"edit" = "수정";
+"enter password" = "비밀번호를 입력해주세요.";
+"password" = "비밀번호";
+"the post is deleted" = "게시물이 삭제되었습니다.";
+"wrong password" = "틀린 비밀번호입니다.";
+"ok" = "확인";
+"cancel" = "취소";
+"write" = "글쓰기";
+"done" = "완료";
+
+"The post is created" = "게시물이 등록되었습니다.";
+"The post is edited" = "게시물이 수정되었습니다.";

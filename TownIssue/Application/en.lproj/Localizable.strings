@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  TownIssue
+
+  Created by 주연  유 on 2020/04/01.
+  Copyright © 2020 주연  유. All rights reserved.
+*/
+
+"menu" = "menu";
+"delete" = "delete";
+"edit" = "edit";
+"enter password" = "please enter your password";
+"password" = "password";
+"the post is deleted" = "the post is deleted";
+"wrong password" = "it is wrong password";
+"ok" = "ok";
+"cancel" = "cancel";
+"write" = "write";
+"done" = "done";
+
+"The post is created" = "The post is created";
+"The post is edited" = "The post is edited";

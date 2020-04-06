@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostTableViewCell" rowHeight="214" id="KGk-i7-Jjw" customClass="PostTableViewCell" customModule="TownIssue" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="214"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="214"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="4k1-K5-ckK">
+                        <rect key="frame" x="20" y="20" width="280" height="174"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmD-pT-Pmb">
+                                <rect key="frame" x="0.0" y="0.0" width="35" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="8ff-Vf-P0D">
+                                <rect key="frame" x="0.0" y="46" width="280" height="16"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="작성자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nl-2f-owz">
+                                        <rect key="frame" x="0.0" y="0.0" width="34" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="ip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BaO-E8-aa2">
+                                        <rect key="frame" x="59" y="0.0" width="173.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiP-Ru-qIS">
+                                        <rect key="frame" x="257.5" y="0.0" width="22.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="본문" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaF-hq-bZH">
+                                <rect key="frame" x="0.0" y="84" width="29.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="f3Z-jS-ZLm">
+                                <rect key="frame" x="0.0" y="126.5" width="260" height="47.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9GQ-uF-PI5">
+                                        <rect key="frame" x="0.0" y="0.0" width="126" height="47.5"/>
+                                        <state key="normal" title="like" image="square.and.arrow.up" catalog="system">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapLikeButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tGv-5e-tq1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OtJ-BO-Ala">
+                                        <rect key="frame" x="134" y="0.0" width="126" height="47.5"/>
+                                        <state key="normal" title="reply" image="square.and.arrow.up" catalog="system">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapReplyButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Vyo-E1-9YD"/>
+                                            <action selector="replyButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="N9J-7P-j2K"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8ff-Vf-P0D" secondAttribute="trailing" id="E3H-Zc-gJJ"/>
+                            <constraint firstItem="8ff-Vf-P0D" firstAttribute="leading" secondItem="4k1-K5-ckK" secondAttribute="leading" id="SeS-ct-N8T"/>
+                            <constraint firstAttribute="trailing" secondItem="f3Z-jS-ZLm" secondAttribute="trailing" constant="20" symbolic="YES" id="VNs-SL-AVv"/>
+                            <constraint firstItem="f3Z-jS-ZLm" firstAttribute="leading" secondItem="4k1-K5-ckK" secondAttribute="leading" constant="20" symbolic="YES" id="YJy-KD-DuC"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="4k1-K5-ckK" secondAttribute="trailing" constant="20" symbolic="YES" id="5xr-KR-pTk"/>
+                    <constraint firstAttribute="bottom" secondItem="4k1-K5-ckK" secondAttribute="bottom" constant="20" symbolic="YES" id="KDb-vm-08K"/>
+                    <constraint firstItem="4k1-K5-ckK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="V3d-oy-iPh"/>
+                    <constraint firstItem="4k1-K5-ckK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="WmC-gk-vu3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="contentLabel" destination="VaF-hq-bZH" id="ttE-yq-rYS"/>
+                <outlet property="ipLabel" destination="BaO-E8-aa2" id="MGi-GJ-Xd0"/>
+                <outlet property="likeButton" destination="9GQ-uF-PI5" id="7kf-yc-K4g"/>
+                <outlet property="secondStackView" destination="8ff-Vf-P0D" id="1iL-gY-dmc"/>
+                <outlet property="timeLabel" destination="tiP-Ru-qIS" id="9BE-R2-9lU"/>
+                <outlet property="titleLabel" destination="rmD-pT-Pmb" id="bCB-IQ-b9i"/>
+                <outlet property="writerLabel" destination="1nl-2f-owz" id="mL1-Dr-fJN"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="209.59821428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
+    </resources>
+</document>
