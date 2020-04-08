@@ -9,7 +9,8 @@
 import UIKit
 
 protocol PostEditTextContentTableViewCellDelegate: class {
-    func setContent(content: String)
+    func updateHeightOfRow(cell: PostEditTextContentTableViewCell, textView: UITextView)
+    func returnContentTextView(textView: UITextView)
 }
 
 class PostEditTextContentTableViewCell: UITableViewCell {
@@ -20,6 +21,7 @@ class PostEditTextContentTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        contentTextView.sizeToFit()
         contentTextView.delegate = self
         
     }
@@ -35,16 +37,25 @@ class PostEditTextContentTableViewCell: UITableViewCell {
             contentTextView.text = model.textContent
         }
     }
-    
-    
 }
 
 extension PostEditTextContentTableViewCell: UITextViewDelegate {
-    func textViewDidEndEditing(_ textView: UITextView) {
-        delegate?.setContent(content: textView.text)
-        if contentTextView.text == "" {
-            contentTextView.text = "본문을 입력하세요"
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        delegate?.returnContentTextView(textView: textView)
+        
+        if textView.text == "본문을 입력하세요" {
+            textView.text = ""
         }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+           textView.text = "본문을 입력하세요"
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        delegate?.updateHeightOfRow(cell: self, textView: textView)
     }
 }
 

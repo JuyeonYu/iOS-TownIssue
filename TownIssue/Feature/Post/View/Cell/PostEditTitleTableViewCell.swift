@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PostEditTitleTableViewCellDelegate: class {
-    func setTitle(title: String)
+    func returnTitleTextField(titleTextField: UITextField)
 }
 
 class PostEditTitleTableViewCell: UITableViewCell {
@@ -20,7 +20,6 @@ class PostEditTitleTableViewCell: UITableViewCell {
         super.awakeFromNib()
         titleTextFiled.placeholder = "title"
         titleTextFiled.delegate = self
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,7 +36,7 @@ class PostEditTitleTableViewCell: UITableViewCell {
 }
 
 extension PostEditTitleTableViewCell: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        delegate?.setTitle(title: textField.text ?? "")
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        delegate?.returnTitleTextField(titleTextField: textField)
     }
 }

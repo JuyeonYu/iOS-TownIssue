@@ -9,11 +9,6 @@
 import UIKit
 
 class PostEditViewController: UIViewController {
-    enum PostEditPurpose {
-        case Write
-        case Edit
-    }
-    
     var purpose: PostEditPurpose = .Write
 
     @IBOutlet weak var tableView: UITableView! {
@@ -23,33 +18,29 @@ class PostEditViewController: UIViewController {
         }
     }
     
+    var currentArea: Region? = nil
+    
     var post: Post? = nil
-//    var writer: String? = nil
-//    var password: String? = nil
-//    var titles: String? = nil
-//    var content: String? = nil
-//    var idTextField: UITextField? = nil
-//    var passwordTextField: UITextField? = nil
-//    var titleTextField: UITextField? = nil
-//    var contentTextView: UITextView? = nil
+    var titleTextField: UITextField? = nil
+    var writerTextField: UITextField? = nil
+    var passwordTextField: UITextField? = nil
+    var contentTextView: UITextView? = nil
     
     let postEditTitleTableViewCellID = "PostEditTitleTableViewCell"
     let postEditTextContentTableViewCellID = "PostEditTextContentTableViewCell"
     let postEditIDPasswordTableViewCellID = "PostEditIDPasswordTableViewCell"
     
-    var responder: Any? = nil
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let postNibName1 = UINib(nibName: postEditTitleTableViewCellID, bundle: nil)
-        tableView.register(postNibName1, forCellReuseIdentifier: postEditTitleTableViewCellID)
+        let titleCellNib = UINib(nibName: postEditTitleTableViewCellID, bundle: nil)
+        tableView.register(titleCellNib, forCellReuseIdentifier: postEditTitleTableViewCellID)
         
-        let postNibName2 = UINib(nibName: postEditTextContentTableViewCellID, bundle: nil)
-        tableView.register(postNibName2, forCellReuseIdentifier: postEditTextContentTableViewCellID)
+        let textContentNib = UINib(nibName: postEditTextContentTableViewCellID, bundle: nil)
+        tableView.register(textContentNib, forCellReuseIdentifier: postEditTextContentTableViewCellID)
 
-        let postNibName3 = UINib(nibName: postEditIDPasswordTableViewCellID, bundle: nil)
-        tableView.register(postNibName3, forCellReuseIdentifier: postEditIDPasswordTableViewCellID)
+        let idPasswordNib = UINib(nibName: postEditIDPasswordTableViewCellID, bundle: nil)
+        tableView.register(idPasswordNib, forCellReuseIdentifier: postEditIDPasswordTableViewCellID)
         
         //inside viewDidLoad
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -57,15 +48,6 @@ class PostEditViewController: UIViewController {
         
         let writeNavigationButton = UIBarButtonItem.init(title: NSLocalizedString("done", comment: ""), style: .plain, target: self, action: #selector(didTapWritetNavigationButton))
         self.navigationItem.rightBarButtonItem = writeNavigationButton
-        
-//        if post != nil {
-//            purpose = .Edit
-//        }
-        
-//        idTextField?.text = post?.writer
-//        passwordTextField?.text = post?.pw
-//        titleTextField?.text = post?.title
-//        contentTextView?.text = post?.content
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
@@ -84,55 +66,50 @@ class PostEditViewController: UIViewController {
     }
     
     @objc func didTapWritetNavigationButton() {
-        print("current IP: \(DataUtil.sharedInstance.getWiFiAddress() ?? "f")")
-        
-        guard let writer = post?.writer else {
-            return
+        if let title = titleTextField?.text {
+            post?.title = title
+        }
+        if let content = contentTextView?.text {
+            post?.content = content
+        }
+        if let writer = writerTextField?.text {
+            post?.writer = writer
+        }
+        if let password = passwordTextField?.text {
+            post?.pw = password
         }
         
-        guard let password = post?.pw else {
+        guard let post = self.post else {
             return
         }
-        
-        guard let title = post?.title else {
-            return
-        }
-        
-        guard let content = post?.content else {
-            return
-        }
-        
-        guard let ip = DataUtil.sharedInstance.getWiFiAddress() else {
-            return
-        }
-        
-        
-        
-        switch purpose {
-        case .Write:
-            let parameter: Dictionary<String, Any> =
-            [Network.kAreaIndex:82, Network.kUserIndex:1, Network.kTitle:title, Network.kContent:content, Network.kWriter:writer, Network.kPassword:password, Network.kIP:ip]
-            
-            NetworkManager.sharedInstance.requestCreatePost(paramters: parameter) { (result) in
-                let alert = UIAlertController(title: "", message: NSLocalizedString("The post is created", comment: ""), preferredStyle: .alert)
+
+        NetworkManager.sharedInstance.getPublicIPAddress { (ip) in
+            switch self.purpose {
+            case .Write:
+                let parameter: Dictionary<String, Any> =
+                    [Network.kAreaIndex:self.currentArea?.areaIdx ?? 82, Network.kUserIndex:1, Network.kTitle:post.title, Network.kContent:post.content, Network.kWriter:post.writer, Network.kPassword:post.pw, Network.kIP:ip]
                 
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.navigationController?.popViewController(animated: false)
+                NetworkManager.sharedInstance.requestCreatePost(paramters: parameter) { (result) in
+                    let alert = UIAlertController(title: "", message: NSLocalizedString("The post is created", comment: ""), preferredStyle: .alert)
+                    
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.navigationController?.popViewController(animated: false)
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true)
                 }
-                alert.addAction(ok)
-                self.present(alert, animated: true)
-            }
-        case .Edit:
-            let parameter: Dictionary<String, Any> =
-                [Network.kBoardIndex:post!.boardIdx, Network.kTitle:title, Network.kContent:content]
-            NetworkManager.sharedInstance.requestUpdatePost(paramters: parameter) { (result) in
-                let alert = UIAlertController(title: "", message: NSLocalizedString("The post is edited", comment: ""), preferredStyle: .alert)
-                
-                let ok = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.navigationController?.popViewController(animated: false)
+            case .Edit:
+                let parameter: Dictionary<String, Any> =
+                    [Network.kBoardIndex:self.post!.boardIdx, Network.kTitle:self.post!.title, Network.kContent:self.post!.content]
+                NetworkManager.sharedInstance.requestUpdatePost(paramters: parameter) { (result) in
+                    let alert = UIAlertController(title: "", message: NSLocalizedString("The post is edited", comment: ""), preferredStyle: .alert)
+                    
+                    let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+                        self.navigationController?.popViewController(animated: false)
+                    }
+                    alert.addAction(ok)
+                    self.present(alert, animated: true)
                 }
-                alert.addAction(ok)
-                self.present(alert, animated: true)
             }
         }
     }
@@ -151,7 +128,6 @@ extension PostEditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = self.tableView.dequeueReusableCell(withIdentifier: postEditIDPasswordTableViewCellID, for: indexPath) as! PostEditIDPasswordTableViewCell
-            
             if self.post != nil {
                 cell.model = PostEditViewModel(post: post!)
             }
@@ -161,34 +137,33 @@ extension PostEditViewController: UITableViewDataSource {
         } else if indexPath.row == 1 {
             let cell = self.tableView.dequeueReusableCell(withIdentifier: postEditTitleTableViewCellID, for: indexPath) as! PostEditTitleTableViewCell
             cell.delegate = self
-            
             if self.post != nil {
                 cell.model = PostEditViewModel(post: post!)
             }
-            
             return cell
         } else {
             let cell = self.tableView.dequeueReusableCell(withIdentifier: postEditTextContentTableViewCellID, for: indexPath) as! PostEditTextContentTableViewCell
             cell.delegate = self
-            
             if self.post != nil {
                 cell.model = PostEditViewModel(post: post!)
             }
-            
             return cell
         }
     }
 }
 
 extension PostEditViewController: PostEditTextContentTableViewCellDelegate {
+    func returnContentTextView(textView: UITextView) {
+        self.contentTextView = textView
+    }
+    
     func setContent(content: String) {
         self.post?.content = content
     }
     
-    func updateHeightOfRow(_ cell: PostEditTextContentTableViewCell, _ textView: UITextView) {
+    func updateHeightOfRow(cell: PostEditTextContentTableViewCell, textView: UITextView) {
         let size = textView.bounds.size
-        let newSize = tableView.sizeThatFits(CGSize(width: size.width,
-                                                        height: CGFloat.greatestFiniteMagnitude))
+        let newSize = tableView.sizeThatFits(CGSize(width: size.width, height: CGFloat.greatestFiniteMagnitude))
         if size.height != newSize.height {
             UIView.setAnimationsEnabled(false)
             tableView?.beginUpdates()
@@ -202,17 +177,17 @@ extension PostEditViewController: PostEditTextContentTableViewCellDelegate {
 }
 
 extension PostEditViewController: PostEditTitleTableViewCellDelegate {
-    func setTitle(title: String) {
-        self.post?.title = title
+    func returnTitleTextField(titleTextField: UITextField) {
+        self.titleTextField = titleTextField
     }
 }
 
 extension PostEditViewController: PostEditIDPasswordTableViewCellDelegate {
-    func setWriter(writer: String) {
-        self.post?.writer = writer
+    func returnWriterTextField(writerTextField: UITextField) {
+        self.writerTextField = writerTextField
     }
     
-    func setPassword(password: String) {
-        self.post?.pw = password
+    func returnPasswordTextField(passwordTextField: UITextField) {
+        self.passwordTextField = passwordTextField
     }
 }

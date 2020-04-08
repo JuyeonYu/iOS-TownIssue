@@ -18,13 +18,13 @@ import Foundation
 
 // MARK: - Post
 struct Post: Codable {
-    let status: JSONNull?
+    let status: Int?
     let boardIdx, areaIdx, userIdx: Int
     var title, content, writer, pw: String
     let ip: String
     let view: Int
     let insDate: String
-    let delDate: JSONNull?
+    let delDate: String?
     let delFlag: String
     let updDate: String?
 }

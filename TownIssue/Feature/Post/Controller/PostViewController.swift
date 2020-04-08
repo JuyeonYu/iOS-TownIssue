@@ -32,7 +32,6 @@ class PostViewController: UIViewController {
     @objc func didTapMenutNavigationButton() {
         let actionTypeAndTitleDict: Dictionary<ActionSheetType, String> = [.DeletePost:NSLocalizedString("delete", comment: ""),
                                                                            .EditPost:NSLocalizedString("edit", comment: "")]
-        
         let option = ActionUtil.sharedInstance.setActionSheet(title: nil, message: nil, actions: actionTypeAndTitleDict) { (type) in
             switch type {
             case .DeletePost:
@@ -75,10 +74,7 @@ class PostViewController: UIViewController {
                         ActionUtil.sharedInstance.showOkAlert(parent: self, title: NSLocalizedString("wrong password", comment: ""), message: nil)
                     }
                 }
-            default:
-                print("d")
             }
-            
         }
         self.present(option, animated: true, completion: nil)
     }

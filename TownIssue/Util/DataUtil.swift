@@ -10,7 +10,6 @@ import Foundation
 import NetworkExtension
 
 
-
 class DataUtil {
     static let sharedInstance = DataUtil()
 
@@ -50,5 +49,7 @@ class DataUtil {
 
         return address
     }
+    
+    
 
 }

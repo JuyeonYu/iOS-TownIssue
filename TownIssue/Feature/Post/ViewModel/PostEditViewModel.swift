@@ -14,15 +14,10 @@ class PostEditViewModel {
     var password: String
     var textContent: String
     
-    struct Section {
-        let post: [Post]
-    }
-    
     init(post: Post) {
         title = post.title
         writer = post.writer
         password = post.pw
         textContent = post.content
-        
     }
 }

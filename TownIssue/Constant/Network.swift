@@ -15,9 +15,11 @@ struct Network {
     
 //    static let  headers: HTTPHeaders = ["Content-Type":"application/json", "Accept": "application/json"]
 
-    static let apiKey: String = "api"
-    static let boardKey: String = "board"
-    static let commonKey: String = "common"
+    static let kAPI: String = "api"
+    static let kBoard: String = "board"
+    static let kArea: String = "area"
+    static let kCommon: String = "common"
+    static let kCustom: String = "custom"
     
     static let kPost: String = "post"
     static let kRegionCode: String = "region_code"
@@ -27,6 +29,7 @@ struct Network {
     
     static let kRegion: String = "region"
     static let kDepth: String = "depth"
+    static let kDepth1: String = "1"
     
     static let kTitle: String = "title"
     static let kContent: String = "content"
@@ -36,9 +39,10 @@ struct Network {
     
     static let kAreaIndex: String = "areaIdx"
     static let kUserIndex: String = "userIdx"
+    static let kParentIndex: String = "parentIdx"
+    
     static let kIP: String = "ip"
     
     static let kSuccessDeletePost: Int = 1
     static let kFailDeletePost: Int = 0
-    
 }

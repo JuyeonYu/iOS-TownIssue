@@ -9,8 +9,8 @@
 import UIKit
 
 protocol PostEditIDPasswordTableViewCellDelegate: class {
-    func setWriter(writer: String)
-    func setPassword(password: String)
+    func returnWriterTextField(writerTextField: UITextField)
+    func returnPasswordTextField(passwordTextField: UITextField)
 }
 
 class PostEditIDPasswordTableViewCell: UITableViewCell {
@@ -43,11 +43,11 @@ class PostEditIDPasswordTableViewCell: UITableViewCell {
 }
 
 extension PostEditIDPasswordTableViewCell: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.placeholder == "ID" {
-            delegate?.setWriter(writer: textField.text ?? "")
+            delegate?.returnWriterTextField(writerTextField: textField)
         } else if textField.placeholder == "Password" {
-            delegate?.setPassword(password: textField.text ?? "")
+            delegate?.returnPasswordTextField(passwordTextField: textField)
         }
     }
 }
