@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PostEditTitleTableViewCellDelegate: class {
-    func returnTitleTextField(titleTextField: UITextField)
+    func saveTitle(title: String)
 }
 
 class PostEditTitleTableViewCell: UITableViewCell {
@@ -36,7 +36,8 @@ class PostEditTitleTableViewCell: UITableViewCell {
 }
 
 extension PostEditTitleTableViewCell: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        delegate?.returnTitleTextField(titleTextField: textField)
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        delegate?.saveTitle(title: textField.text ?? "")
+        return true
     }
 }

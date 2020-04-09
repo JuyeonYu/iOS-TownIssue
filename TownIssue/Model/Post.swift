@@ -27,6 +27,7 @@ struct Post: Codable {
     let delDate: String?
     let delFlag: String
     let updDate: String?
+    var replys: [ReplyTest]?
 }
 
 // MARK: - Encode/decode helpers

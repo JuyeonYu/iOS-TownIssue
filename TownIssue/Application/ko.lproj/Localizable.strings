@@ -9,7 +9,11 @@
 "menu" = "메뉴";
 "delete" = "삭제";
 "edit" = "수정";
+"enter title" = "제목을 입력해주세요.";
 "enter password" = "비밀번호를 입력해주세요.";
+"enter writer" = "작성자를 입력해주세요.";
+"enter content" = "본문을 입력해주세요.";
+
 "password" = "비밀번호";
 "the post is deleted" = "게시물이 삭제되었습니다.";
 "wrong password" = "틀린 비밀번호입니다.";

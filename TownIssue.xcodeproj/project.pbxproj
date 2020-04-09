@@ -26,6 +26,9 @@
 		B5671062243E06CB00279EDE /* RegionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5671060243E06CB00279EDE /* RegionCollectionViewCell.swift */; };
 		B5671063243E06CB00279EDE /* RegionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5671061243E06CB00279EDE /* RegionCollectionViewCell.xib */; };
 		B5671065243E075D00279EDE /* RegionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5671064243E075D00279EDE /* RegionViewModel.swift */; };
+		B5671067243EADC800279EDE /* ReplyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5671066243EADC800279EDE /* ReplyTest.swift */; };
+		B567106B243EAF0900279EDE /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5671069243EAF0900279EDE /* ReplyTableViewCell.swift */; };
+		B567106C243EAF0900279EDE /* ReplyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B567106A243EAF0900279EDE /* ReplyTableViewCell.xib */; };
 		B59B10B6243325F200E4E3D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59B10B5243325F200E4E3D9 /* AppDelegate.swift */; };
 		B59B10B8243325F200E4E3D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59B10B7243325F200E4E3D9 /* SceneDelegate.swift */; };
 		B59B10BA243325F200E4E3D9 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59B10B9243325F200E4E3D9 /* PostListViewController.swift */; };
@@ -69,6 +72,9 @@
 		B5671060243E06CB00279EDE /* RegionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionCollectionViewCell.swift; sourceTree = "<group>"; };
 		B5671061243E06CB00279EDE /* RegionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegionCollectionViewCell.xib; sourceTree = "<group>"; };
 		B5671064243E075D00279EDE /* RegionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionViewModel.swift; sourceTree = "<group>"; };
+		B5671066243EADC800279EDE /* ReplyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTest.swift; sourceTree = "<group>"; };
+		B5671069243EAF0900279EDE /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
+		B567106A243EAF0900279EDE /* ReplyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReplyTableViewCell.xib; sourceTree = "<group>"; };
 		B59B10B2243325F200E4E3D9 /* TownIssue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TownIssue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59B10B5243325F200E4E3D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B59B10B7243325F200E4E3D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -253,6 +259,8 @@
 				B54833562438343A002E20F9 /* PostEditImagewContentTableViewCell.xib */,
 				B5671060243E06CB00279EDE /* RegionCollectionViewCell.swift */,
 				B5671061243E06CB00279EDE /* RegionCollectionViewCell.xib */,
+				B5671069243EAF0900279EDE /* ReplyTableViewCell.swift */,
+				B567106A243EAF0900279EDE /* ReplyTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -262,6 +270,7 @@
 			children = (
 				B59B10E52433328400E4E3D9 /* Post.swift */,
 				B567105E243E025F00279EDE /* Region.swift */,
+				B5671066243EADC800279EDE /* ReplyTest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -337,6 +346,7 @@
 				B548335424383424002E20F9 /* PostEditTextContentTableViewCell.xib in Resources */,
 				B59B10E424332AFC00E4E3D9 /* PostListTableViewCell.xib in Resources */,
 				B5671063243E06CB00279EDE /* RegionCollectionViewCell.xib in Resources */,
+				B567106C243EAF0900279EDE /* ReplyTableViewCell.xib in Resources */,
 				B54833582438343A002E20F9 /* PostEditImagewContentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +403,7 @@
 				B59B10EE24335BE600E4E3D9 /* PostViewController.swift in Sources */,
 				B548334B243833D2002E20F9 /* PostEditIDPasswordTableViewCell.swift in Sources */,
 				B548334F243833EE002E20F9 /* PostEditTitleTableViewCell.swift in Sources */,
+				B567106B243EAF0900279EDE /* ReplyTableViewCell.swift in Sources */,
 				B54833572438343A002E20F9 /* PostEditImagewContentTableViewCell.swift in Sources */,
 				B59B10EC2433349500E4E3D9 /* PostListViewModel.swift in Sources */,
 				B59B10E8243332AE00E4E3D9 /* NetworkManager.swift in Sources */,
@@ -412,6 +423,7 @@
 				B59B10F124338B6100E4E3D9 /* PostTableViewCell.swift in Sources */,
 				B567105F243E025F00279EDE /* Region.swift in Sources */,
 				B59B10EA243332DA00E4E3D9 /* Network.swift in Sources */,
+				B5671067243EADC800279EDE /* ReplyTest.swift in Sources */,
 				B59B10E62433328400E4E3D9 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

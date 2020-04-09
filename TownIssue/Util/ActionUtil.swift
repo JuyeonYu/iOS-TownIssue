@@ -49,40 +49,55 @@ class ActionUtil {
         parent.present(alert, animated: true)
     }
     
-    func showActionSheet(parent: UIViewController, title: String?, message: String?, alertActionList: [UIAlertAction], completion: @escaping (ActionSheetType) -> ()) {
-        let optionMenu = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        
-        for alertAction in alertActionList {
-            optionMenu.addAction(alertAction)
-        }
-        
-        parent.present(optionMenu, animated: true, completion: nil)
-    }
-    
-    
-    func setActionSheet(title: String?, message: String?, actions: Dictionary<ActionSheetType, String>, completion: @escaping (ActionSheetType) -> ()) -> UIAlertController {
-        let optionMenu = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        for action in actions {
-            switch action.key {
-            case .DeletePost:
-                let deleteAction = UIAlertAction(title: action.value, style: .default, handler: { (alert: UIAlertAction!) -> Void in
-                    completion(action.key)
-                })
-                optionMenu.addAction(deleteAction)
-                
-            case .EditPost:
-                let editAction = UIAlertAction(title: action.value, style: .default, handler: {(alert: UIAlertAction!) -> Void in
-                    completion(action.key)
-                })
-                optionMenu.addAction(editAction)
-            default:
-            print("s")
+    func showAlert(viewController: UIViewController,
+                   alertController: UIAlertController,
+                   useTextField:Bool,
+                   placehoder: String?,
+                   actions: [UIAlertAction]) {
+        if useTextField {
+            alertController.addTextField { (textField) in
+                textField.placeholder = placehoder
             }
-//
         }
-        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel)
-        optionMenu.addAction(cancelAction)
-        return optionMenu
+        for action in actions {
+            alertController.addAction(action)
+        }
+        viewController.present(alertController, animated: true)
     }
+    
+//    func showActionSheet(parent: UIViewController, title: String?, message: String?, alertActionList: [UIAlertAction], completion: @escaping (ActionSheetType) -> ()) {
+//        let optionMenu = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+//
+//        for alertAction in alertActionList {
+//            optionMenu.addAction(alertAction)
+//        }
+//
+//        parent.present(optionMenu, animated: true, completion: nil)
+//    }
+//
+//
+//    func setActionSheet(title: String?, message: String?, actions: Dictionary<ActionSheetType, String>, completion: @escaping (ActionSheetType) -> ()) -> UIAlertController {
+//        let optionMenu = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+//        for action in actions {
+//            switch action.key {
+//            case .DeletePost:
+//                let deleteAction = UIAlertAction(title: action.value, style: .default, handler: { (alert: UIAlertAction!) -> Void in
+//                    completion(action.key)
+//                })
+//                optionMenu.addAction(deleteAction)
+//
+//            case .EditPost:
+//                let editAction = UIAlertAction(title: action.value, style: .default, handler: {(alert: UIAlertAction!) -> Void in
+//                    completion(action.key)
+//                })
+//                optionMenu.addAction(editAction)
+//            default:
+//            print("s")
+//            }
+//        }
+//        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel)
+//        optionMenu.addAction(cancelAction)
+//        return optionMenu
+//    }
     
 }

@@ -9,7 +9,10 @@
 "menu" = "menu";
 "delete" = "delete";
 "edit" = "edit";
-"enter password" = "please enter your password";
+"enter writer" = "please enter the writer.";
+"enter title" = "please enter the title.";
+"enter password" = "please enter the password";
+"enter content" = "please enter the content";
 "password" = "password";
 "the post is deleted" = "the post is deleted";
 "wrong password" = "it is wrong password";

@@ -13,6 +13,7 @@ class PostViewModel {
     let ip: String
     let view: Int
     let insDate: String
+    let replys: [ReplyTest]?
     
     init(post: Post) {
         title = post.title
@@ -21,5 +22,6 @@ class PostViewModel {
         ip = post.ip
         view = post.view
         insDate = post.insDate
+        replys = post.replys
     }
 }

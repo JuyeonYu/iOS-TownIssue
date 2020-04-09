@@ -120,6 +120,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMe-VH-R62">
                                         <rect key="frame" x="351" y="0.0" width="63" height="74"/>
                                         <state key="normal" title="send"/>
+                                        <connections>
+                                            <action selector="didTapSendReplyButton:" destination="BKY-Iz-GVQ" eventType="touchUpInside" id="OjK-YB-XGv"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -137,6 +140,8 @@
                         <viewLayoutGuide key="safeArea" id="qDA-n9-w2O"/>
                     </view>
                     <connections>
+                        <outlet property="replyTextView" destination="zZ2-Ji-MuC" id="91I-Af-hKV"/>
+                        <outlet property="sendReplyButton" destination="YMe-VH-R62" id="vqB-GD-PLf"/>
                         <outlet property="tableView" destination="EfZ-Ei-Rrs" id="3VL-Gx-ep6"/>
                     </connections>
                 </viewController>

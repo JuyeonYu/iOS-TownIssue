@@ -87,7 +87,7 @@ class PostListViewController: UIViewController {
         let viewController = self.storyboard?.instantiateViewController(identifier: postEditViewControllerID) as! PostEditViewController
         viewController.purpose = .Write
         viewController.currentArea = currentArea
-        viewController.post = Post(status: nil, boardIdx: 0, areaIdx: 0, userIdx: 0, title: "", content: "", writer: "", pw: "", ip: "", view: 0, insDate: "", delDate: nil, delFlag: "", updDate: "")
+        viewController.post = Post(status: nil, boardIdx: 0, areaIdx: 0, userIdx: 0, title: "", content: "", writer: "", pw: "", ip: "", view: 0, insDate: "", delDate: nil, delFlag: "", updDate: "", replys: nil)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
