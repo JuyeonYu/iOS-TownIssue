@@ -29,6 +29,7 @@ class RegionCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.regionButton.layer.cornerRadius = 10
     }
 
 }

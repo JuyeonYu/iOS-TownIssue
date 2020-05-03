@@ -10,7 +10,7 @@ import UIKit
 
 protocol PostEditTextContentTableViewCellDelegate: class {
     func updateHeightOfRow(cell: PostEditTextContentTableViewCell, textView: UITextView)
-    func returnContentTextView(textView: UITextView)
+    func saveContent(content: String)
 }
 
 class PostEditTextContentTableViewCell: UITableViewCell {
@@ -34,15 +34,13 @@ class PostEditTextContentTableViewCell: UITableViewCell {
     
     var model: PostEditViewModel! {
         didSet {
-            contentTextView.text = model.textContent
+            contentTextView.text = model.content
         }
     }
 }
 
 extension PostEditTextContentTableViewCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        delegate?.returnContentTextView(textView: textView)
-        
         if textView.text == "본문을 입력하세요" {
             textView.text = ""
         }
@@ -56,6 +54,7 @@ extension PostEditTextContentTableViewCell: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         delegate?.updateHeightOfRow(cell: self, textView: textView)
+        delegate?.saveContent(content: textView.text)
     }
 }
 

@@ -9,17 +9,23 @@
 import Foundation
 
 class PostViewModel {
-    let title, content, writer: String
-    let ip: String
+    let areaIdx: Int
     let view: Int
-    let insDate: String
+    let boardIdx: Int
+    let writer: String
+    let title: String
+    let content: String
+    let ip: String
+    var timeElapsed: String
     
     init(post: Post) {
+        areaIdx = post.areaIdx
+        view = post.view
+        boardIdx = post.boardIdx
+        writer = post.writer
         title = post.title
         content = post.content
-        writer = post.writer
         ip = post.ip
-        view = post.view
-        insDate = post.insDate
+        timeElapsed = DataUtil.sharedInstance.timeElapsed(date: DataUtil.sharedInstance.jsonStringDateToDate(date: post.insDate)!)
     }
 }

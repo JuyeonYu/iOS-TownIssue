@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PostEditTitleTableViewCellDelegate: class {
-    func returnTitleTextField(titleTextField: UITextField)
+    func saveTitle(title: String)
 }
 
 class PostEditTitleTableViewCell: UITableViewCell {
@@ -18,8 +18,10 @@ class PostEditTitleTableViewCell: UITableViewCell {
     weak var delegate: PostEditTitleTableViewCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
-        titleTextFiled.placeholder = "title"
-        titleTextFiled.delegate = self
+        titleTextFiled.placeholder = NSLocalizedString("title", comment: "")
+//        titleTextFiled.delegate = self
+        
+        titleTextFiled.addTarget(self, action: #selector(titleChanged(textField:)), for: .editingChanged)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,10 +35,22 @@ class PostEditTitleTableViewCell: UITableViewCell {
             titleTextFiled.text = model.title
         }
     }
-}
-
-extension PostEditTitleTableViewCell: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        delegate?.returnTitleTextField(titleTextField: textField)
+    
+    @objc func titleChanged(textField: UITextField) -> Void {
+        delegate?.saveTitle(title: textField.text ?? "")
     }
 }
+
+//extension PostEditTitleTableViewCell: UITextFieldDelegate {
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if let text = textField.text, let textRange = Range(range, in: text) {
+//            let updatedText = text.replacingCharacters(in: textRange, with: string)
+//            delegate?.saveTitle(title: updatedText)
+//        }
+//        return true
+//    }
+//
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        print("text: \(String(describing: textField.text))")
+//    }
+//}

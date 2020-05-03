@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum ActionSheetType {
-    case DeletePost
-    case EditPost
+enum PostEditPurpose {
+    case Write
+    case Edit
 }
 
 
-enum PostEditPurpose {
+enum ReplyEditPurpose {
     case Write
     case Edit
 }

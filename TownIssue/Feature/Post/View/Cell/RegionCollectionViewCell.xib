@@ -10,15 +10,18 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RegionCollectionViewCell" id="gTV-IL-0wX" customClass="RegionCollectionViewCell" customModule="TownIssue" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWe-GH-esJ">
-                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                        <state key="normal" title="Button"/>
+                        <rect key="frame" x="10" y="0.0" width="70" height="80"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </state>
                         <connections>
                             <action selector="didTapRegionButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="np2-QK-odz"/>
                         </connections>
@@ -26,10 +29,10 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="xWe-GH-esJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Cfc-aV-Qp3"/>
-                <constraint firstItem="xWe-GH-esJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="amY-p0-PzV"/>
-                <constraint firstAttribute="trailing" secondItem="xWe-GH-esJ" secondAttribute="trailing" id="el5-Hx-287"/>
-                <constraint firstAttribute="bottom" secondItem="xWe-GH-esJ" secondAttribute="bottom" id="p5L-Pg-6iu"/>
+                <constraint firstItem="xWe-GH-esJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="D0e-CI-Y7K"/>
+                <constraint firstItem="xWe-GH-esJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JaZ-1j-qE5"/>
+                <constraint firstAttribute="trailing" secondItem="xWe-GH-esJ" secondAttribute="trailing" id="y6b-EO-N3f"/>
+                <constraint firstAttribute="bottom" secondItem="xWe-GH-esJ" secondAttribute="bottom" id="ykD-0y-fEx"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>

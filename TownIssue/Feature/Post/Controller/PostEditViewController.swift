@@ -19,12 +19,7 @@ class PostEditViewController: UIViewController {
     }
     
     var currentArea: Region? = nil
-    
     var post: Post? = nil
-    var titleTextField: UITextField? = nil
-    var writerTextField: UITextField? = nil
-    var passwordTextField: UITextField? = nil
-    var contentTextView: UITextView? = nil
     
     let postEditTitleTableViewCellID = "PostEditTitleTableViewCell"
     let postEditTextContentTableViewCellID = "PostEditTextContentTableViewCell"
@@ -43,41 +38,93 @@ class PostEditViewController: UIViewController {
         tableView.register(idPasswordNib, forCellReuseIdentifier: postEditIDPasswordTableViewCellID)
         
         //inside viewDidLoad
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
         
-        let writeNavigationButton = UIBarButtonItem.init(title: NSLocalizedString("done", comment: ""), style: .plain, target: self, action: #selector(didTapWritetNavigationButton))
+        let writeNavigationButton = UIBarButtonItem.init(title: NSLocalizedString("done", comment: ""),
+                                                         style: .plain,
+                                                         target: self,
+                                                         action: #selector(didTapWritetNavigationButton))
         self.navigationItem.rightBarButtonItem = writeNavigationButton
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height - 80, right: 0)
+            tableView.contentInset = UIEdgeInsets(top: 0,
+                                                  left: 0,
+                                                  bottom: keyboardSize.height - 80,
+                                                  right: 0)
         }
     }
 
     @objc func keyboardWillHide(_ notification:Notification) {
         if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            tableView.contentInset = UIEdgeInsets(top: 0,
+                                                  left: 0,
+                                                  bottom: 0,
+                                                  right: 0)
         }
         
-        let writeNavigationButton = UIBarButtonItem.init(title: NSLocalizedString("write", comment: ""), style: .plain, target: self, action: #selector(didTapWritetNavigationButton))
+        let writeNavigationButton = UIBarButtonItem.init(title: NSLocalizedString("write", comment: ""),
+                                                         style: .plain,
+                                                         target: self,
+                                                         action: #selector(didTapWritetNavigationButton))
         self.navigationItem.rightBarButtonItem = writeNavigationButton
     }
     
     @objc func didTapWritetNavigationButton() {
-        if let title = titleTextField?.text {
-            post?.title = title
+        let ok = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default)
+        
+        guard self.post?.writer != "" else {
+            let alert = UIAlertController(title: "",
+                                          message: NSLocalizedString("enter writer", comment: ""),
+                                          preferredStyle: .alert)
+            ActionUtil.sharedInstance.showAlert(viewController: self, alertController: alert,
+                                                useTextField: false,
+                                                placehoder: nil,
+                                                actions: [ok])
+            return
         }
-        if let content = contentTextView?.text {
-            post?.content = content
+        guard self.post?.pw != "" else {
+            let alert = UIAlertController(title: "",
+                                          message: NSLocalizedString("enter password", comment: ""),
+                                          preferredStyle: .alert)
+            ActionUtil.sharedInstance.showAlert(viewController: self,
+                                                alertController: alert,
+                                                useTextField: false,
+                                                placehoder: nil,
+                                                actions: [ok])
+            return
         }
-        if let writer = writerTextField?.text {
-            post?.writer = writer
+        guard self.post?.title != "" else {
+            let alert = UIAlertController(title: "",
+                                          message: NSLocalizedString("enter title", comment: ""),
+                                          preferredStyle: .alert)
+            ActionUtil.sharedInstance.showAlert(viewController: self,
+                                                alertController: alert,
+                                                useTextField: false,
+                                                placehoder: nil,
+                                                actions: [ok])
+            return
         }
-        if let password = passwordTextField?.text {
-            post?.pw = password
+        guard self.post?.content != "" else {
+            let alert = UIAlertController(title: "",
+                                          message: NSLocalizedString("enter content", comment: ""),
+                                          preferredStyle: .alert)
+            ActionUtil.sharedInstance.showAlert(viewController: self,
+                                                alertController: alert,
+                                                useTextField: false,
+                                                placehoder: nil,
+                                                actions: [ok])
+            return
         }
+        
         
         guard let post = self.post else {
             return
@@ -86,29 +133,56 @@ class PostEditViewController: UIViewController {
         NetworkManager.sharedInstance.getPublicIPAddress { (ip) in
             switch self.purpose {
             case .Write:
-                let parameter: Dictionary<String, Any> =
-                    [Network.kAreaIndex:self.currentArea?.areaIdx ?? 82, Network.kUserIndex:1, Network.kTitle:post.title, Network.kContent:post.content, Network.kWriter:post.writer, Network.kPassword:post.pw, Network.kIP:ip]
+                let parameter: Dictionary<String, Any> = [Network.kAreaIndex:self.currentArea?.areaIdx ?? 82,
+                                                          Network.kTitle:post.title,
+                                                          Network.kContent:post.content,
+                                                          Network.kWriter:post.writer,
+                                                          Network.kPassword:post.pw ?? "",
+                                                          Network.kIP:ip]
                 
-                NetworkManager.sharedInstance.requestCreatePost(paramters: parameter) { (result) in
-                    let alert = UIAlertController(title: "", message: NSLocalizedString("The post is created", comment: ""), preferredStyle: .alert)
+                NetworkManager.sharedInstance.createPost(paramters: parameter) { (apiResponse, result) in
+                    let alert = UIAlertController(title: "",
+                                                  message: NSLocalizedString("The post is created", comment: ""),
+                                                  preferredStyle: .alert)
                     
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         self.navigationController?.popViewController(animated: false)
                     }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true)
+                    ActionUtil.sharedInstance.showAlert(viewController: self,
+                                                        alertController: alert,
+                                                        useTextField: false,
+                                                        placehoder: nil,
+                                                        actions: [ok])
                 }
             case .Edit:
-                let parameter: Dictionary<String, Any> =
-                    [Network.kBoardIndex:self.post!.boardIdx, Network.kTitle:self.post!.title, Network.kContent:self.post!.content]
-                NetworkManager.sharedInstance.requestUpdatePost(paramters: parameter) { (result) in
-                    let alert = UIAlertController(title: "", message: NSLocalizedString("The post is edited", comment: ""), preferredStyle: .alert)
+                guard let password = self.post?.pw else {
+                    return
+                }
+                guard let title = self.post?.title else {
+                    return
+                }
+                guard let content = self.post?.content else {
+                    return
+                }
+                guard let boardIndex = self.post?.boardIdx else {
+                    return
+                }
+                let parameter: Dictionary<String, Any> = [Network.kPassword:password,
+                                                          Network.kTitle:title,
+                                                          Network.kContent:content]
+                NetworkManager.sharedInstance.updatePost(postIndex:boardIndex, paramters: parameter) { (apiResponse, result) in
+                    let alert = UIAlertController(title: "",
+                                                  message: NSLocalizedString("The post is edited", comment: ""),
+                                                  preferredStyle: .alert)
                     
                     let ok = UIAlertAction(title: "OK", style: .default) { (action) in
                         self.navigationController?.popViewController(animated: false)
                     }
-                    alert.addAction(ok)
-                    self.present(alert, animated: true)
+                    ActionUtil.sharedInstance.showAlert(viewController: self,
+                                                        alertController: alert,
+                                                        useTextField: false,
+                                                        placehoder: nil,
+                                                        actions: [ok])
                 }
             }
         }
@@ -116,9 +190,7 @@ class PostEditViewController: UIViewController {
 }
 
 extension PostEditViewController: UITableViewDelegate {
-    
 }
-
 
 extension PostEditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,10 +200,15 @@ extension PostEditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = self.tableView.dequeueReusableCell(withIdentifier: postEditIDPasswordTableViewCellID, for: indexPath) as! PostEditIDPasswordTableViewCell
+            cell.delegate = self
             if self.post != nil {
                 cell.model = PostEditViewModel(post: post!)
             }
-            cell.delegate = self
+            
+            if self.purpose == .Edit {
+                cell.idTextField.isEnabled = false
+                cell.passwordTextField.isHidden = false
+            }
             return cell
             
         } else if indexPath.row == 1 {
@@ -153,8 +230,8 @@ extension PostEditViewController: UITableViewDataSource {
 }
 
 extension PostEditViewController: PostEditTextContentTableViewCellDelegate {
-    func returnContentTextView(textView: UITextView) {
-        self.contentTextView = textView
+    func saveContent(content: String) {
+        self.post?.content = content
     }
     
     func setContent(content: String) {
@@ -163,7 +240,8 @@ extension PostEditViewController: PostEditTextContentTableViewCellDelegate {
     
     func updateHeightOfRow(cell: PostEditTextContentTableViewCell, textView: UITextView) {
         let size = textView.bounds.size
-        let newSize = tableView.sizeThatFits(CGSize(width: size.width, height: CGFloat.greatestFiniteMagnitude))
+        let newSize = tableView.sizeThatFits(CGSize(width: size.width,
+                                                    height: CGFloat.greatestFiniteMagnitude))
         if size.height != newSize.height {
             UIView.setAnimationsEnabled(false)
             tableView?.beginUpdates()
@@ -177,17 +255,17 @@ extension PostEditViewController: PostEditTextContentTableViewCellDelegate {
 }
 
 extension PostEditViewController: PostEditTitleTableViewCellDelegate {
-    func returnTitleTextField(titleTextField: UITextField) {
-        self.titleTextField = titleTextField
+    func saveTitle(title: String) {
+        self.post?.title = title
     }
 }
 
 extension PostEditViewController: PostEditIDPasswordTableViewCellDelegate {
-    func returnWriterTextField(writerTextField: UITextField) {
-        self.writerTextField = writerTextField
+    func saveWriter(writer: String) {
+        self.post?.writer = writer
     }
     
-    func returnPasswordTextField(passwordTextField: UITextField) {
-        self.passwordTextField = passwordTextField
+    func savePassword(password: String) {
+        self.post?.pw = password
     }
 }
