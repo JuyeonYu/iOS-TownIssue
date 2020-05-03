@@ -9,15 +9,21 @@
 import Foundation
 
 class PostEditViewModel {
-    var title: String
-    var writer: String
-    var password: String
-    var textContent: String
+    let areaIdx: Int
+    let view: Int
+    let insDate: String
+    let boardIdx: Int
+    let writer: String
+    let title: String
+    let content: String
     
     init(post: Post) {
-        title = post.title
+        areaIdx = post.areaIdx
+        view = post.view
+        insDate = post.insDate
+        boardIdx = post.boardIdx
         writer = post.writer
-        password = post.pw
-        textContent = post.content
+        title = post.title
+        content = post.content
     }
 }

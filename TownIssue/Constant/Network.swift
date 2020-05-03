@@ -10,7 +10,34 @@ import Foundation
 import Alamofire
 
 struct Network {
-    static let baseURL: String = "http://townissue.com:9080"
+    struct Urls {
+        static let baseURL: String =                "http://townissue.com:9080"
+        
+        // 지역
+        static let readRegionsWithDepth =           "/api/area/custom/depth"
+        static let readRegionsWithParentIndex =     "/api/area/custom/parentIdx"
+
+        // 글
+        static let createPost =                      "/api/board/service"
+        static let readPostWithAreaIndex =          "/api/board/service/area"
+        static let readPostWithBoardIndex =       "/api/board/service"
+        static let updatePostWithBoardIndex =       "/api/board/service"
+        static let deletePostWithBoardIndex =       "/api/board/service"
+        static let checkPostPasswordWithBoardIndex = "/api/board/service/chk"
+        
+        
+
+        // 댓글
+        static let createReply =                         "/api/comment/service"
+        static let readReplyWithboardIndex =            "/api/comment/service/board"
+        static let updateReplywithCommnetIndex =        "/api/comment/service"
+        static let deleteReplyWithCommnetIndex =        "/api/comment/service"
+        static let checkReplyPasswordWithCommnetIndex = "/api/comment/service/chk"
+
+        
+        
+    }
+    
 //    static let HTTPHeader: HTTPHeaders = ["Content-Type":"application/json"]
     
 //    static let  headers: HTTPHeaders = ["Content-Type":"application/json", "Accept": "application/json"]
@@ -19,6 +46,7 @@ struct Network {
     static let kBoard: String = "board"
     static let kArea: String = "area"
     static let kCommon: String = "common"
+    static let kService: String = "service"
     static let kCustom: String = "custom"
     
     static let kPost: String = "post"
@@ -42,6 +70,11 @@ struct Network {
     static let kParentIndex: String = "parentIdx"
     
     static let kIP: String = "ip"
+    static let kSize: String = "size"
+    static let kSort: String = "sort"
+    static let kInsDate: String = "insDate"
+    static let kBoardIdx: String = "boardIdx"
+    static let kPagingSize: Int = 20
     
     static let kSuccessDeletePost: Int = 1
     static let kFailDeletePost: Int = 0

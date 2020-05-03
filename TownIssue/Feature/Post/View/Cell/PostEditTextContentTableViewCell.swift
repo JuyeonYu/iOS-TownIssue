@@ -34,7 +34,7 @@ class PostEditTextContentTableViewCell: UITableViewCell {
     
     var model: PostEditViewModel! {
         didSet {
-            contentTextView.text = model.textContent
+            contentTextView.text = model.content
         }
     }
 }

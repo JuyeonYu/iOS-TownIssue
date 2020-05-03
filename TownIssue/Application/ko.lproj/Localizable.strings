@@ -16,6 +16,7 @@
 
 "password" = "비밀번호";
 "the post is deleted" = "게시물이 삭제되었습니다.";
+"the reply is deleted" = "댓글이 삭제되었습니다.";
 "wrong password" = "틀린 비밀번호입니다.";
 "ok" = "확인";
 "cancel" = "취소";
@@ -24,3 +25,16 @@
 
 "The post is created" = "게시물이 등록되었습니다.";
 "The post is edited" = "게시물이 수정되었습니다.";
+"nickName" = "닉네임";
+
+"Just Now" = "방금 전";
+"A minute ago" = "1분 전";
+"mins ago" = "분 전";
+"An hour ago" = "1시간 전";
+"hours ago" = "시간 전";
+"Yesterday" = "어제";
+"days ago" = "일 전";
+"A month ago" = "1달 전";
+"months ago" = "달 전";
+"A year ago" = "작년";
+"years ago" = "년 전";

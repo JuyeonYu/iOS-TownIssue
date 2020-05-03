@@ -15,41 +15,58 @@ class DataUtil {
 
     init() {}
     
-    // Return IP address of WiFi interface (en0) as a String, or `nil`
-    func getWiFiAddress() -> String? {
-        var address : String?
-
-        // Get list of all interfaces on the local machine:
-        var ifaddr : UnsafeMutablePointer<ifaddrs>?
-        guard getifaddrs(&ifaddr) == 0 else { return nil }
-        guard let firstAddr = ifaddr else { return nil }
-
-        // For each interface ...
-        for ifptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
-            let interface = ifptr.pointee
-
-            // Check for IPv4 or IPv6 interface:
-            let addrFamily = interface.ifa_addr.pointee.sa_family
-            if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
-
-                // Check interface name:
-                let name = String(cString: interface.ifa_name)
-                if  name == "en0" {
-
-                    // Convert interface address to a human readable string:
-                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                    getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
-                                &hostname, socklen_t(hostname.count),
-                                nil, socklen_t(0), NI_NUMERICHOST)
-                    address = String(cString: hostname)
-                }
-            }
-        }
-        freeifaddrs(ifaddr)
-
-        return address
+    func jsonStringDateToDate(date: String) -> Date? {
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+        let date:Date = dateFormatter.date(from: date)!
+        return date
     }
     
-    
+    func timeElapsed(date: Date) -> String {
 
+        let date1:Date = date
+        let date2: Date = Date() // Same you did before with timeNow variable
+
+        let calender:Calendar = Calendar.current
+        let components: DateComponents = calender.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date1, to: date2)
+        var returnString:String = ""
+
+        if components.second! < 60 {
+            returnString = NSLocalizedString("Just Now", comment: "")
+        }
+
+        if components.minute! > 1 {
+            returnString = String(describing: components.minute!) + NSLocalizedString("mins ago", comment: "")
+        } else if components.minute! == 1 {
+            returnString = String(NSLocalizedString("A minute ago", comment: ""))
+        }
+
+        if components.hour! > 1 {
+            returnString = String(describing: components.hour!) + NSLocalizedString("hours ago", comment: "")
+        } else if components.hour == 1 {
+            returnString = NSLocalizedString("An hour ago", comment: "")
+        }
+
+        if components.day! > 1 {
+            returnString = String(describing: components.day!) + NSLocalizedString("days ago", comment: "")
+        } else if components.day! == 1 {
+            returnString = NSLocalizedString("Yesterday", comment: "")
+        }
+
+        if components.month! > 1{
+            returnString = String(describing: components.month!) + NSLocalizedString("months ago", comment: "")
+        } else if components.month! == 1 {
+            returnString = NSLocalizedString("A month ago", comment: "")
+        }
+
+        if components.year! > 1 {
+            returnString = String(describing: components.year!) + NSLocalizedString("years ago", comment: "")
+        }
+        else if components.year! == 1 {
+            returnString = NSLocalizedString("A year ago", comment: "")
+        }
+
+        return returnString
+    }
 }

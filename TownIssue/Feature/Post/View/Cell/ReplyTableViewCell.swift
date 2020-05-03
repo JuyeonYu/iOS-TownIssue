@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ReplyTableViewCellDelegate: class {
-    
+    func didTapMenuButton(cell: ReplyTableViewCell)
 }
 
 class ReplyTableViewCell: UITableViewCell {
@@ -23,19 +23,20 @@ class ReplyTableViewCell: UITableViewCell {
     @IBOutlet weak var replyButton: UIButton!
     @IBAction func didTapReplyButton(_ sender: Any) {
     }
+    @IBOutlet weak var menuButton: UIButton!
+    @IBAction func didTapMenuButton(_ sender: Any) {
+        delegate?.didTapMenuButton(cell: self)
+    }
     
-    var model: PostViewModel! {
+    weak var delegate: ReplyTableViewCellDelegate?
+    
+    var model: ReplyViewModel! {
         didSet {
-            guard let replys = model.replys else {
-                return
-            }
-            
-            for reply in replys {
-                writerLabel.text = reply.writer
-                ipLabel.text = reply.ip
-                timeLabel.text = reply.insDate
-                contentLabel.text = reply.content
-            }
+            writerLabel.text = model.writer
+            timeLabel.text = model.insDate
+            contentLabel.text = model.content
+            ipLabel.text = model.ip
+            timeLabel.text = model.timeElapsed
         }
     }
     
@@ -50,5 +51,22 @@ class ReplyTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }
+
+extension ReplyTableViewCell: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text,
+           let textRange = Range(range, in: text) {
+           let updatedText = text.replacingCharacters(in: textRange, with: string)
+           
+//            if textField == self.writerLabel {
+//                delegate?.saveWriter(writer: updatedText)
+//            } else {
+//                delegate?.savePassword(password: updatedText)
+//            }
+        }
+        return true
+    }
+}
+
+

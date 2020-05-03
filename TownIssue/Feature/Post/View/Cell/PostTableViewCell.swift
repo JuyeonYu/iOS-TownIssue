@@ -23,17 +23,19 @@ class PostTableViewCell: UITableViewCell {
     @IBAction func didTapReplyButton(_ sender: Any) {
     }
     @IBOutlet weak var secondStackView: UIStackView!
+    @IBOutlet weak var viewLabel: UILabel!
+    @IBOutlet weak var viewButton: UIButton!
     
     var model: PostViewModel! {
         didSet {
             writerLabel.text = model.writer
-            ipLabel.text = model.ip
             titleLabel.text = model.title
             contentLabel.text = model.content
-            timeLabel.text = model.insDate
+            timeLabel.text = model.timeElapsed
+            ipLabel.text = model.ip
+            viewLabel.text = String(model.view)
         }
     }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

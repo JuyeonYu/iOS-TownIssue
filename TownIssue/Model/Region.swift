@@ -12,13 +12,17 @@ import Foundation
 
 // MARK: - Region
 struct Region: Codable {
-    let status: Int?
-    let areaIdx, cityIdx: Int
+    let status: String?
+    let areaIdx: Int
+    let cityIdx: Int
     let cityName: String
     let districtIdx: Int
     let districtName: String
     let townIdx: Int
     let townName: String
-    let parentIdx, depth: Int
-    let nameKorean, nameEnglish, nameChinese: String
+    let parentIdx: Int
+    let depth: Int
+    let nameKorean: String
+    let nameEnglish: String
+    let nameChinese: String
 }

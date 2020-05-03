@@ -9,15 +9,15 @@
 import UIKit
 
 class PostListViewController: UIViewController {
-    var postList: [Post] = [] {
-      didSet {
-        tableView.reloadData()
-      }
-    }
+    
+    @IBOutlet weak var collectionViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableViewConstraint: NSLayoutConstraint!
+    //    MARK: Set tableview and collection view
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
+            tableView.tableFooterView = UIView()
         }
     }
     @IBOutlet weak var colletionView: UICollectionView! {
@@ -26,69 +26,98 @@ class PostListViewController: UIViewController {
             colletionView.dataSource = self
         }
     }
+    
+    var postList: [Post] = [] {
+      didSet {
+        tableView.reloadData()
+      }
+    }
+    
     var regionList: [Region] = [] {
       didSet {
         colletionView.reloadData()
       }
     }
     
-    var currentArea: Region? = nil
+//    MARK: Set default value
+    let KoreaIndex = 82
+    var currentArea: Region = Region(status: nil,
+                                     areaIdx: 82,
+                                     cityIdx: 0,
+                                     cityName: "대한민국",
+                                     districtIdx: 0,
+                                     districtName: "",
+                                     townIdx: 0,
+                                     townName: "",
+                                     parentIdx: 0,
+                                     depth: 0,
+                                     nameKorean: "대한민국",
+                                     nameEnglish: "",
+                                     nameChinese: "")
     
     let postListTableViewCellID = "PostListTableViewCell"
     let postViewControllerID = "PostViewController"
     let postEditViewControllerID = "PostEditViewController"
     let regionCollectionViewCellID = "RegionCollectionViewCell"
-    
-    
+
+    @IBOutlet weak var bookMarkButton: UIBarButtonItem!
+    @IBAction func didTapBookMarkButton(_ sender: Any) {
+        if bookMarkButton.image == UIImage(systemName: "bookmark.fill") {
+            bookMarkButton.image = UIImage(systemName: "bookmark")
+        } else {
+            bookMarkButton.image = UIImage(systemName: "bookmark.fill")
+        }
+        
+    }
+    @IBOutlet weak var writeButton: UIBarButtonItem!
+    @IBAction func didTapWriteButton(_ sender: Any) {
+        let viewController = self.storyboard?.instantiateViewController(identifier: postEditViewControllerID) as! PostEditViewController
+        viewController.purpose = .Write
+        viewController.currentArea = currentArea
+        viewController.post = Post(areaIdx: currentArea.areaIdx,
+                                   view: 0,
+                                   insDate: "",
+                                   boardIdx: 0,
+                                   writer: "",
+                                   title: "",
+                                   content: "",
+                                   ip: "",
+                                   pw: nil)
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    //    MARK: Viewcontroller life cicle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if currentArea == nil {
-            self.navigationItem.title = "대한민국"
-        } else {
-            self.navigationItem.title = currentArea?.nameKorean
-        }
-        
+        self.navigationItem.title = currentArea.nameKorean
+
         let regionNibName = UINib(nibName: regionCollectionViewCellID, bundle: nil)
         colletionView.register(regionNibName, forCellWithReuseIdentifier: regionCollectionViewCellID)
                 
         let postNibName = UINib(nibName: postListTableViewCellID, bundle: nil)
         tableView.register(postNibName, forCellReuseIdentifier: postListTableViewCellID)
-        
-        let menuNavigationButton = UIBarButtonItem.init(title: NSLocalizedString("write", comment: ""), style: .plain, target: self, action: #selector(didTapWritePostNavigationButton))
-        self.navigationItem.rightBarButtonItem = menuNavigationButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        if currentArea == nil {
-            NetworkManager.sharedInstance.requestRegion1Depth { (result) in
+        if currentArea.areaIdx == KoreaIndex {
+            NetworkManager.sharedInstance.readDepth1Regions { (apiReponse, result) in
                 self.regionList = result as! [Region]
-            }
-            
-            NetworkManager.sharedInstance.requestReadAllPostList { (result) in
-                self.postList = result as! [Post]
-                self.postList.reverse()
             }
         } else {
-            NetworkManager.sharedInstance.requestRegionsWithParentIndex(parentIndex: currentArea!.areaIdx) { (result) in
+            NetworkManager.sharedInstance.readSonRegions(parentIndex: currentArea.areaIdx) { (apiReponse, result) in
                 self.regionList = result as! [Region]
             }
-            
-            NetworkManager.sharedInstance.requestReadPostWithAreaIndex(areaIndex: currentArea!.areaIdx) { (result) in
-                self.postList = result as! [Post]
-                self.postList.reverse()
-            }
         }
-    }
-    
-    @objc func didTapWritePostNavigationButton() {
-        let viewController = self.storyboard?.instantiateViewController(identifier: postEditViewControllerID) as! PostEditViewController
-        viewController.purpose = .Write
-        viewController.currentArea = currentArea
-        viewController.post = Post(status: nil, boardIdx: 0, areaIdx: 0, userIdx: 0, title: "", content: "", writer: "", pw: "", ip: "", view: 0, insDate: "", delDate: nil, delFlag: "", updDate: "", replys: nil)
-        self.navigationController?.pushViewController(viewController, animated: true)
+
+        NetworkManager.sharedInstance.readAreaPost(areaIndex: currentArea.areaIdx) { (apiReponse, result) in
+            self.postList = result as! [Post]
+        }
+        
+        if regionList.count == 0 {
+            
+        }
     }
 }
 
@@ -110,8 +139,15 @@ extension PostListViewController: UITableViewDataSource {
         cell.model = PostListViewModel(post: self.postList[indexPath.row])
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("indexPath.row: \(indexPath.row)")
+        if indexPath.row == self.postList.count - 1 {
+            print("request more")
+        }
+    }
 }
-
 
 extension PostListViewController: UICollectionViewDelegate {
     

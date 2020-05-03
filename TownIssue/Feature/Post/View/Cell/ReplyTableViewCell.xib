@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-hk-BmK">
-                        <rect key="frame" x="20" y="20" width="280" height="123"/>
+                        <rect key="frame" x="20" y="20" width="280" height="108"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="l2K-HX-7zp">
                                 <rect key="frame" x="0.0" y="0.0" width="280" height="16"/>
@@ -49,25 +49,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HPn-g3-FqQ">
-                                <rect key="frame" x="0.0" y="80.5" width="260" height="42.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HPn-g3-FqQ">
+                                <rect key="frame" x="0.0" y="80.5" width="280" height="27.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADt-b0-34t">
-                                        <rect key="frame" x="0.0" y="0.0" width="126" height="42.5"/>
-                                        <state key="normal" title="like" image="square.and.arrow.up" catalog="system">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPQ-IF-wok">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="27.5"/>
+                                        <state key="normal" image="pencil.circle" catalog="system"/>
                                         <connections>
-                                            <action selector="didTapLikeButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kV6-PC-SMp"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dex-kt-pUm">
-                                        <rect key="frame" x="134" y="0.0" width="126" height="42.5"/>
-                                        <state key="normal" title="reply" image="square.and.arrow.up" catalog="system">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapReplyButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="LXS-or-JP8"/>
+                                            <action selector="didTapMenuButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="GOe-CC-SCq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -75,7 +64,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="l2K-HX-7zp" firstAttribute="leading" secondItem="hvk-hk-BmK" secondAttribute="leading" id="Hxv-e8-pPI"/>
-                            <constraint firstAttribute="trailing" secondItem="HPn-g3-FqQ" secondAttribute="trailing" constant="20" symbolic="YES" id="fWA-R9-QlI"/>
+                            <constraint firstAttribute="trailing" secondItem="HPn-g3-FqQ" secondAttribute="trailing" id="fWA-R9-QlI"/>
                             <constraint firstItem="HPn-g3-FqQ" firstAttribute="leading" secondItem="hvk-hk-BmK" secondAttribute="leading" constant="20" symbolic="YES" id="hny-Gb-OTe"/>
                             <constraint firstAttribute="trailing" secondItem="l2K-HX-7zp" secondAttribute="trailing" id="xT6-VE-CCq"/>
                         </constraints>
@@ -83,7 +72,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="hvk-hk-BmK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="Tw7-kd-WWq"/>
-                    <constraint firstAttribute="bottom" secondItem="hvk-hk-BmK" secondAttribute="bottom" id="mvg-eh-P4z"/>
+                    <constraint firstAttribute="bottom" secondItem="hvk-hk-BmK" secondAttribute="bottom" constant="15" id="mvg-eh-P4z"/>
                     <constraint firstAttribute="trailing" secondItem="hvk-hk-BmK" secondAttribute="trailing" constant="20" symbolic="YES" id="oJT-hP-Pqh"/>
                     <constraint firstItem="hvk-hk-BmK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="ox6-CA-vQd"/>
                 </constraints>
@@ -92,8 +81,7 @@
             <connections>
                 <outlet property="contentLabel" destination="gJZ-86-aU9" id="Qv0-De-X1A"/>
                 <outlet property="ipLabel" destination="LnL-H3-5F8" id="B5t-C2-niz"/>
-                <outlet property="likeButton" destination="ADt-b0-34t" id="PjI-yy-Ebp"/>
-                <outlet property="replyButton" destination="Dex-kt-pUm" id="xr1-ZN-BtX"/>
+                <outlet property="menuButton" destination="sPQ-IF-wok" id="VQA-b6-AP7"/>
                 <outlet property="timeLabel" destination="WPQ-d6-YMj" id="0Dq-Q7-sGp"/>
                 <outlet property="writerLabel" destination="WaT-wk-5bJ" id="TsI-8l-Lty"/>
             </connections>
@@ -101,6 +89,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
+        <image name="pencil.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>

@@ -21,11 +21,14 @@ class PostEditIDPasswordTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        idTextField.placeholder = "ID"
-        passwordTextField.placeholder = "Password"
+        idTextField.placeholder = NSLocalizedString("nickName", comment: "")
+        passwordTextField.placeholder = NSLocalizedString("password", comment: "")
+
+//        idTextField.delegate = self
+//        passwordTextField.delegate = self
         
-        idTextField.delegate = self
-        passwordTextField.delegate = self
+        idTextField.addTarget(self, action: #selector(idChanged(textField:)), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(passwordChanged(textField:)), for: .editingChanged)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,25 +40,30 @@ class PostEditIDPasswordTableViewCell: UITableViewCell {
     var model: PostEditViewModel! {
         didSet {
             idTextField.text = model.writer
-            passwordTextField.text = model.password
         }
+    }
+    
+    @objc func idChanged(textField: UITextField) -> Void {
+        delegate?.saveWriter(writer: textField.text ?? "")
+    }
+    
+    @objc func passwordChanged(textField: UITextField) -> Void {
+        delegate?.savePassword(password: textField.text ?? "")
     }
 }
 
-extension PostEditIDPasswordTableViewCell: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField.placeholder == "ID" {
-            delegate?.saveWriter(writer: textField.text ?? "")
-        } else if textField.placeholder == "Password" {
-            delegate?.savePassword(password: textField.text ?? "")
-        }
-        return true
-    }
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        if textField.placeholder == "ID" {
-//            delegate?.returnWriterTextField(writerTextField: textField)
-//        } else if textField.placeholder == "Password" {
-//            delegate?.returnPasswordTextField(passwordTextField: textField)
+//extension PostEditIDPasswordTableViewCell: UITextFieldDelegate {
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if let text = textField.text,
+//           let textRange = Range(range, in: text) {
+//           let updatedText = text.replacingCharacters(in: textRange, with: string)
+//
+//            if textField == self.idTextField {
+////                delegate?.saveWriter(writer: updatedText)
+//            } else {
+//                delegate?.savePassword(password: updatedText)
+//            }
 //        }
-    }
-}
+//        return true
+//    }
+//}

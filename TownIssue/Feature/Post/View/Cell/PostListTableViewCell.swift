@@ -32,11 +32,11 @@ class PostListTableViewCell: UITableViewCell {
     var model: PostListViewModel! {
         didSet {
             writerLabel.text = model.writer
-            ipLabel.text = model.ip
             titleLabel.text = model.title
             contentLabel.text = model.content
             readCountLabel.text = String(model.view)
-            timeLabel.text = model.insDate
+            timeLabel.text = model.timeElapsed
+            ipLabel.text = model.ip
         }
     }
     

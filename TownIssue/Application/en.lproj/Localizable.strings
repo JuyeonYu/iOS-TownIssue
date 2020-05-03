@@ -15,6 +15,7 @@
 "enter content" = "please enter the content";
 "password" = "password";
 "the post is deleted" = "the post is deleted";
+"the reply is deleted" = "the reply is deleted";
 "wrong password" = "it is wrong password";
 "ok" = "ok";
 "cancel" = "cancel";
@@ -23,3 +24,17 @@
 
 "The post is created" = "The post is created";
 "The post is edited" = "The post is edited";
+"The reply is edited" = "The reply is edited";
+"nickName" = "nickName";
+
+"Just Now" = "Just Now";
+"A minute ago" = "A minute ago";
+"mins ago" = "mins ago";
+"An hour ago" = "An hour ago";
+"hours ago" = "hours ago";
+"Yesterday" = "Yesterday";
+"days ago" = "days ago";
+"A month ago" = "A month ago";
+"months ago" = "months ago";
+"A year ago" = "A year ago";
+"years ago" = "years ago";
