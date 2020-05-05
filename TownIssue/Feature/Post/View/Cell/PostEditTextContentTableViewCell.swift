@@ -44,7 +44,7 @@ class PostEditTextContentTableViewCell: UITableViewCell {
 
 extension PostEditTextContentTableViewCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "본문을 입력하세요" {
+        if textView.text == NSLocalizedString("please enter content", comment: "") {
             textView.text = ""
             textView.textColor = UIColor.black
         }
