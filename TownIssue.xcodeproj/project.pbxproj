@@ -89,7 +89,7 @@
 		B567106A243EAF0900279EDE /* ReplyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReplyTableViewCell.xib; sourceTree = "<group>"; };
 		B5741BD92442BBFD002994DB /* AdvertiseMentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseMentTableViewCell.swift; sourceTree = "<group>"; };
 		B5741BDA2442BBFD002994DB /* AdvertiseMentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvertiseMentTableViewCell.xib; sourceTree = "<group>"; };
-		B59B10B2243325F200E4E3D9 /* 동네의 참견.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "동네의 참견.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B59B10B2243325F200E4E3D9 /* 동네의참견.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "동네의참견.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59B10B5243325F200E4E3D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B59B10B7243325F200E4E3D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B59B10B9243325F200E4E3D9 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		B59B10B3243325F200E4E3D9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B59B10B2243325F200E4E3D9 /* 동네의 참견.app */,
+				B59B10B2243325F200E4E3D9 /* 동네의참견.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -315,7 +315,7 @@
 			);
 			name = TownIssue;
 			productName = TownIssue;
-			productReference = B59B10B2243325F200E4E3D9 /* 동네의 참견.app */;
+			productReference = B59B10B2243325F200E4E3D9 /* 동네의참견.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -618,7 +618,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.townissue;
-				PRODUCT_NAME = "동네의 참견";
+				PRODUCT_NAME = "동네의참견";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -637,7 +637,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.townissue;
-				PRODUCT_NAME = "동네의 참견";
+				PRODUCT_NAME = "동네의참견";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
