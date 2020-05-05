@@ -69,4 +69,37 @@ class DataUtil {
 
         return returnString
     }
+    
+    func realmRegionsToRegions (realmRegions: [RealmRegion]) -> [Region] {
+        var regions: Array<Region> = []
+        
+        for region in realmRegions {
+            regions.append(Region(status: nil,
+                                areaIdx: region.areaIdx,
+                                cityIdx: 0, cityName: "",
+                                districtIdx: 0,
+                                districtName: "",
+                                townIdx: 0,
+                                townName: "",
+                                parentIdx: 0,
+                                depth: 0,
+                                nameKorean: region.nameKorean,
+                                nameEnglish: "",
+                                nameChinese: ""))
+        }
+        
+        return regions
+    }
+    
+    func realmPostToPost (realmPost: RealmPost) -> Post {
+        return Post(areaIdx: 0,
+                    view: realmPost.view,
+                    insDate: realmPost.insDate,
+                    boardIdx: realmPost.boardIdx,
+                    writer: realmPost.writer,
+                    title: realmPost.title,
+                    content: realmPost.content,
+                    ip: realmPost.ip,
+                    pw: nil)
+    }
 }

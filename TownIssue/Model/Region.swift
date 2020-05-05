@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import RealmSwift
 //   let region = try? newJSONDecoder().decode(Region.self, from: jsonData)
 
 // MARK: - Region
@@ -25,4 +25,9 @@ struct Region: Codable {
     let nameKorean: String
     let nameEnglish: String
     let nameChinese: String
+}
+
+class RealmRegion: Object {
+    @objc dynamic var areaIdx = 0
+    @objc dynamic var nameKorean = ""
 }

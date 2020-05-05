@@ -12,6 +12,8 @@
 		B5228B5F2446FB9000A0057E /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5228B5E2446FB9000A0057E /* APIResponse.swift */; };
 		B53168A2243461BC009A9BED /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53168A1243461BC009A9BED /* Common.swift */; };
 		B53168A52434680C009A9BED /* ActionUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53168A42434680C009A9BED /* ActionUtil.swift */; };
+		B53939E12460467B00EDF6FF /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53939E02460467B00EDF6FF /* Bookmark.swift */; };
+		B53939E32461204800EDF6FF /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53939E22461204800EDF6FF /* BookmarkViewController.swift */; };
 		B548333D243486E0002E20F9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B548333F243486E0002E20F9 /* Localizable.strings */; };
 		B548334424348EF5002E20F9 /* PostEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B548334324348EF5002E20F9 /* PostEditViewController.swift */; };
 		B548334B243833D2002E20F9 /* PostEditIDPasswordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5483349243833D2002E20F9 /* PostEditIDPasswordTableViewCell.swift */; };
@@ -60,6 +62,8 @@
 		B5228B5E2446FB9000A0057E /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		B53168A1243461BC009A9BED /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		B53168A42434680C009A9BED /* ActionUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionUtil.swift; sourceTree = "<group>"; };
+		B53939E02460467B00EDF6FF /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+		B53939E22461204800EDF6FF /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		B548333E243486E0002E20F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B548334024348712002E20F9 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		B548334124348712002E20F9 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -85,7 +89,7 @@
 		B567106A243EAF0900279EDE /* ReplyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReplyTableViewCell.xib; sourceTree = "<group>"; };
 		B5741BD92442BBFD002994DB /* AdvertiseMentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseMentTableViewCell.swift; sourceTree = "<group>"; };
 		B5741BDA2442BBFD002994DB /* AdvertiseMentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvertiseMentTableViewCell.xib; sourceTree = "<group>"; };
-		B59B10B2243325F200E4E3D9 /* TownIssue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TownIssue.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B59B10B2243325F200E4E3D9 /* 동네의 참견.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "동네의 참견.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59B10B5243325F200E4E3D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B59B10B7243325F200E4E3D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B59B10B9243325F200E4E3D9 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
@@ -156,7 +160,7 @@
 		B59B10B3243325F200E4E3D9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B59B10B2243325F200E4E3D9 /* TownIssue.app */,
+				B59B10B2243325F200E4E3D9 /* 동네의 참견.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,6 +253,7 @@
 				B59B10B9243325F200E4E3D9 /* PostListViewController.swift */,
 				B59B10ED24335BE600E4E3D9 /* PostViewController.swift */,
 				B548334324348EF5002E20F9 /* PostEditViewController.swift */,
+				B53939E22461204800EDF6FF /* BookmarkViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 			children = (
 				B59B10E52433328400E4E3D9 /* Post.swift */,
 				B567105E243E025F00279EDE /* Region.swift */,
+				B53939E02460467B00EDF6FF /* Bookmark.swift */,
 				B5228B5C2446EAAE00A0057E /* Reply.swift */,
 				B5671066243EADC800279EDE /* ReplyTest.swift */,
 				B5228B5E2446FB9000A0057E /* APIResponse.swift */,
@@ -309,7 +315,7 @@
 			);
 			name = TownIssue;
 			productName = TownIssue;
-			productReference = B59B10B2243325F200E4E3D9 /* TownIssue.app */;
+			productReference = B59B10B2243325F200E4E3D9 /* 동네의 참견.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -427,6 +433,7 @@
 				B548335A243835C9002E20F9 /* PostEditViewModel.swift in Sources */,
 				B5228B5D2446EAAE00A0057E /* Reply.swift in Sources */,
 				B5671062243E06CB00279EDE /* RegionCollectionViewCell.swift in Sources */,
+				B53939E32461204800EDF6FF /* BookmarkViewController.swift in Sources */,
 				B53168A2243461BC009A9BED /* Common.swift in Sources */,
 				B548335C243865D4002E20F9 /* DataUtil.swift in Sources */,
 				B548335324383424002E20F9 /* PostEditTextContentTableViewCell.swift in Sources */,
@@ -442,6 +449,7 @@
 				B59B10F424338EA400E4E3D9 /* PostViewModel.swift in Sources */,
 				B59B10F124338B6100E4E3D9 /* PostTableViewCell.swift in Sources */,
 				B567105F243E025F00279EDE /* Region.swift in Sources */,
+				B53939E12460467B00EDF6FF /* Bookmark.swift in Sources */,
 				B59B10EA243332DA00E4E3D9 /* Network.swift in Sources */,
 				B5671067243EADC800279EDE /* ReplyTest.swift in Sources */,
 				B59B10E62433328400E4E3D9 /* Post.swift in Sources */,
@@ -609,8 +617,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.TownIssue;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.townissue;
+				PRODUCT_NAME = "동네의 참견";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -628,8 +636,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.TownIssue;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnny.townissue;
+				PRODUCT_NAME = "동네의 참견";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

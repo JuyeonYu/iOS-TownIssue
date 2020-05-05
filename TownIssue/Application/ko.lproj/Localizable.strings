@@ -22,6 +22,7 @@
 "cancel" = "취소";
 "write" = "글쓰기";
 "done" = "완료";
+"title" = "제목";
 
 "The post is created" = "게시물이 등록되었습니다.";
 "The post is edited" = "게시물이 수정되었습니다.";
@@ -38,3 +39,6 @@
 "months ago" = "달 전";
 "A year ago" = "작년";
 "years ago" = "년 전";
+
+"region" = "동네";
+"please enter content" = "본문을 입력해주세요.";

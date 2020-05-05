@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 class PostListViewController: UIViewController {
+    lazy var realm:Realm = {
+        return try! Realm()
+    }()
     
     @IBOutlet weak var collectionViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableViewConstraint: NSLayoutConstraint!
+    
     //    MARK: Set tableview and collection view
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -20,10 +26,10 @@ class PostListViewController: UIViewController {
             tableView.tableFooterView = UIView()
         }
     }
-    @IBOutlet weak var colletionView: UICollectionView! {
+    @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
-            colletionView.delegate = self
-            colletionView.dataSource = self
+            collectionView.delegate = self
+            collectionView.dataSource = self
         }
     }
     
@@ -35,7 +41,7 @@ class PostListViewController: UIViewController {
     
     var regionList: [Region] = [] {
       didSet {
-        colletionView.reloadData()
+        collectionView.reloadData()
       }
     }
     
@@ -62,10 +68,21 @@ class PostListViewController: UIViewController {
 
     @IBOutlet weak var bookMarkButton: UIBarButtonItem!
     @IBAction func didTapBookMarkButton(_ sender: Any) {
+        let realmRegion = RealmRegion()
+        realmRegion.areaIdx = currentArea.areaIdx
+        realmRegion.nameKorean = currentArea.nameKorean
+        
         if bookMarkButton.image == UIImage(systemName: "bookmark.fill") {
             bookMarkButton.image = UIImage(systemName: "bookmark")
+            try! self.realm.write {
+                self.realm.delete(realm.objects(RealmRegion.self).filter("areaIdx = \(self.currentArea.areaIdx)"))
+            }
         } else {
             bookMarkButton.image = UIImage(systemName: "bookmark.fill")
+            
+            try! self.realm.write {
+                self.realm.add(realmRegion)
+            }
         }
         
     }
@@ -80,7 +97,7 @@ class PostListViewController: UIViewController {
                                    boardIdx: 0,
                                    writer: "",
                                    title: "",
-                                   content: "",
+                                   content: NSLocalizedString("please enter content", comment: ""),
                                    ip: "",
                                    pw: nil)
         self.navigationController?.pushViewController(viewController, animated: true)
@@ -92,7 +109,7 @@ class PostListViewController: UIViewController {
         self.navigationItem.title = currentArea.nameKorean
 
         let regionNibName = UINib(nibName: regionCollectionViewCellID, bundle: nil)
-        colletionView.register(regionNibName, forCellWithReuseIdentifier: regionCollectionViewCellID)
+        collectionView.register(regionNibName, forCellWithReuseIdentifier: regionCollectionViewCellID)
                 
         let postNibName = UINib(nibName: postListTableViewCellID, bundle: nil)
         tableView.register(postNibName, forCellReuseIdentifier: postListTableViewCellID)
@@ -118,6 +135,13 @@ class PostListViewController: UIViewController {
         if regionList.count == 0 {
             
         }
+//        let result = realm.objects(RealmRegion.self).filter("regionIndex = \(self.currentArea.areaIdx)").isEmpty
+        if realm.objects(RealmRegion.self).filter("areaIdx = \(self.currentArea.areaIdx)").isEmpty {
+            bookMarkButton.image = UIImage(systemName: "bookmark")
+        } else {
+            bookMarkButton.image = UIImage(systemName: "bookmark.fill")
+        }
+        
     }
 }
 
@@ -159,7 +183,7 @@ extension PostListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = self.colletionView.dequeueReusableCell(withReuseIdentifier: regionCollectionViewCellID, for: indexPath) as! RegionCollectionViewCell
+        let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: regionCollectionViewCellID, for: indexPath) as! RegionCollectionViewCell
         cell.model = RegionViewModel(region: self.regionList[indexPath.row])
         cell.delegate = self
         return cell
@@ -168,7 +192,7 @@ extension PostListViewController: UICollectionViewDataSource {
 
 extension PostListViewController: RegionCollectionViewCellDelegate {
     func didTapRegionButton(cell: RegionCollectionViewCell) {
-        guard let indexPath = self.colletionView.indexPath(for: cell) else {
+        guard let indexPath = self.collectionView.indexPath(for: cell) else {
             return
         }
         

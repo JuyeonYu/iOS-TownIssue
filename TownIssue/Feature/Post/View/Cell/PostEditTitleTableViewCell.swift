@@ -19,8 +19,6 @@ class PostEditTitleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         titleTextFiled.placeholder = NSLocalizedString("title", comment: "")
-//        titleTextFiled.delegate = self
-        
         titleTextFiled.addTarget(self, action: #selector(titleChanged(textField:)), for: .editingChanged)
     }
 

@@ -12,6 +12,14 @@ class AdvertiseMentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var advertisermentButton: UIButton!
     @IBAction func didTapAdvertisementButton(_ sender: Any) {
+        let email = "townissue@gmail.com"
+        if let url = URL(string: "mailto:\(email)") {
+          if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+          } else {
+            UIApplication.shared.openURL(url)
+          }
+        }
     }
     override func awakeFromNib() {
         super.awakeFromNib()

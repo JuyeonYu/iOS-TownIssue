@@ -21,6 +21,7 @@
 "cancel" = "cancel";
 "write" = "write";
 "done" = "done";
+"title" = "title";
 
 "The post is created" = "The post is created";
 "The post is edited" = "The post is edited";
@@ -38,3 +39,6 @@
 "months ago" = "months ago";
 "A year ago" = "A year ago";
 "years ago" = "years ago";
+
+"region" = "Region";
+"please enter content" = "Please enter content";

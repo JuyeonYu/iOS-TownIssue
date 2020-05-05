@@ -7,6 +7,6 @@ target 'TownIssue' do
 
   # Pods for TownIssue
 pod 'Alamofire', '~> 5.0'
-
+pod 'RealmSwift'
 
 end

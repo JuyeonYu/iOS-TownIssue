@@ -24,6 +24,9 @@ class PostEditTextContentTableViewCell: UITableViewCell {
         contentTextView.sizeToFit()
         contentTextView.delegate = self
         
+        contentTextView.layer.borderColor = UIColor.lightGray.cgColor
+        contentTextView.layer.borderWidth = 0.5
+        contentTextView.text = NSLocalizedString("please enter content", comment: "")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,12 +46,14 @@ extension PostEditTextContentTableViewCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "본문을 입력하세요" {
             textView.text = ""
+            textView.textColor = UIColor.black
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
+        if textView.text == "" || textView.text == nil {
            textView.text = "본문을 입력하세요"
+            textView.textColor = UIColor.lightGray
         }
     }
     
